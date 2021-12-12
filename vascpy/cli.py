@@ -3,8 +3,6 @@ import logging
 
 import click
 
-from vascpy.version import VERSION
-
 L = logging.getLogger("vascpy")
 
 
@@ -13,7 +11,6 @@ FILE_TYPE = click.Path(exists=True, readable=True, dir_okay=False, resolve_path=
 
 @click.group("vascpy", help=__doc__.format(esc="\b"))
 @click.option("-v", "--verbose", count=True, help="-v for INFO, -vv for DEBUG")
-@click.version_option(VERSION)
 def app(verbose=0):
     """VasculatureAPI"""
     # pylint: disable=missing-docstring

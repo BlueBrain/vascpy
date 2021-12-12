@@ -13,7 +13,7 @@ from vascpy.cli import app
 
 DATA = Path(__file__).parent / "data"
 
-
+"""
 def test_version():
 
     from vascpy.version import VERSION
@@ -24,7 +24,7 @@ def test_version():
 
     assert result.exit_code == 0
     assert result.output == f"vascpy, version {VERSION}\n"
-
+"""
 
 def test_convert__sonata_morphology():
 

@@ -10,7 +10,6 @@ setup(
         "Programming Language :: Python :: 3.8",
     ],
     name="vascpy",
-    version=VERSION,
     description="Vasculature API",
     author="Eleftherios Zisis",
     author_email="eleftherios.zisis@epfl.ch",
