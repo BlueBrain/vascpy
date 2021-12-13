@@ -11,8 +11,7 @@ setup(
     ],
     name="vascpy",
     description="Vasculature API",
-    author="Eleftherios Zisis",
-    author_email="eleftherios.zisis@epfl.ch",
+    author="Blue Brain Project, EPFL",
     install_requires=[
         "numpy>=1.17",
         "scipy>=1.0.0",
@@ -26,4 +25,6 @@ setup(
     packages=find_packages(),
     entry_points={"console_scripts": ["vascpy = vascpy.cli:app"]},
     include_package_data=True,
+    use_scm_version=True,
+    python_requires=">=3.7",
 )
