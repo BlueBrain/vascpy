@@ -12,6 +12,7 @@ setup(
     name="vascpy",
     description="Vasculature API",
     author="Blue Brain Project, EPFL",
+    license="Apache-2",
     install_requires=[
         "numpy>=1.17",
         "scipy>=1.0.0",
