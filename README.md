@@ -1,21 +1,21 @@
-# Vasculature API
- 
-[![pipeline status](https://bbpgitlab.epfl.ch/molsys/vascpy/badges/main/pipeline.svg)](https://bbpgitlab.epfl.ch/molsys/vascpy/-/commits/main)
-
-
-[![coverage report](https://bbpgitlab.epfl.ch/molsys/vascpy/badges/main/coverage.svg)](https://bbpgitlab.epfl.ch/molsys/vascpy/-/commits/main) 
-
-Introduction
-------------
+vascpy
+======
 
 vascpy is a library for reading and writing vasculature datasets using two alternative representations: section-centered and edge-centered. It supports the following respective formats:
 
-* H5 Morphology (see [specification](https://bbpteam.epfl.ch/documentation/projects/Morphology%20Documentation/latest/h5vasculature.html))
-* SONATA node population of edges (see [specification](https://bbpteam.epfl.ch/documentation/projects/Circuit%20Documentation/latest/sonata_tech.html))
+* H5 Morphology (see [specification](https://github.com/BlueBrain/h5-vasc-graph))
+* SONATA node population of edges (see [specification](https://github.com/AllenInstitute/sonata/blob/master/docs/SONATA_DEVELOPER_GUIDE.md))
 
 The vascpy provides two classes: `PointVasculature` and `SectionVasculature` that allow for reading and writing edge-centered and section-centered datasets respectively, as well as converting between them.
 
-Basic usage
+Installation
+------------
+vascpy can be installed via `pip`:
+```
+pip install vascpy
+```
+
+Usage
 -----
 
 Load and write an h5 morphology file:
