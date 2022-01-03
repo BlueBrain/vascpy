@@ -1,16 +1,16 @@
 vascpy
 ======
 
-vascpy is a library for reading and writing vasculature datasets using two alternative representations: section-centered and edge-centered. It supports the following respective formats:
+`vascpy` is a library for reading and writing vasculature datasets using two alternative representations: section-centered and edge-centered. It supports the following respective formats:
 
 * H5 Morphology (see [specification](https://github.com/BlueBrain/h5-vasc-graph))
 * SONATA node population of edges (see [specification](https://github.com/AllenInstitute/sonata/blob/master/docs/SONATA_DEVELOPER_GUIDE.md))
 
-The vascpy provides two classes: `PointVasculature` and `SectionVasculature` that allow for reading and writing edge-centered and section-centered datasets respectively, as well as converting between them.
+The `vascpy` library provides two classes: `PointVasculature` and `SectionVasculature` that allow for reading and writing edge-centered and section-centered datasets respectively, as well as converting between them.
 
 Installation
 ------------
-vascpy can be installed via `pip`:
+`vascpy` can be installed via `pip`:
 ```
 pip install vascpy
 ```
@@ -55,7 +55,7 @@ v.save_sonata("sample_sonata2.h5")
 Representation conversions
 -----------
 
-vascpy allows the conversion between the two representations:
+`vascpy` allows the conversion between the two representations:
 
 ```python
 from vascpy import PointVasculature
