@@ -35,7 +35,7 @@ setup(
         "pandas>=1.0.0",
         "morphio>=3.0.0",
         "libsonata>=0.1.8",
-        "click>=7.0",
+        "click>=8.0",
     ],
     extras_require={"convert-vtk": DEPS_VTK, "all": DEPS_VTK + ["python-igraph>=0.8.0"]},
     packages=find_packages(),
