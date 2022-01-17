@@ -89,3 +89,9 @@ edge_properties = pd.DataFrame({
 v = PointVasculature(node_properties=node_properties, edge_properties=edge_properties)
 v.save_sonata('my_vasculature.h5')
 ```
+Funding & Acknowledgements
+-------------------------
+
+The development of this software was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government's ETH Board of the Swiss Federal Institutes of Technology.
+
+Copyright (c) 2021 Blue Brain Project/EPFL
