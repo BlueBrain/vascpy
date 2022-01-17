@@ -26,6 +26,7 @@ def test_version():
     assert result.output == f"vascpy, version {VERSION}\n"
 """
 
+
 def test_convert__sonata_morphology():
 
     morphology_file = str(DATA / "h5/fork_diameters_section_spec.h5")

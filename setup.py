@@ -16,7 +16,6 @@ limitations under the License.
 """
 from setuptools import find_packages, setup
 
-
 DEPS_VTK = ["vtk>=8.1.2"]
 
 
