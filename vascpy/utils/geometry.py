@@ -105,7 +105,7 @@ def unique_points(points, decimals):
     # we need the to_sorted in order to go to the sorted indice
     visited = {duplicate_ids[to_sorted[0]]: 0}
 
-    n = 1
+    num_duplicates = 1
     for i in range(1, len(sorted_idx)):
 
         s_index = to_sorted[i]
@@ -116,11 +116,11 @@ def unique_points(points, decimals):
         # index n is assigned
         if is_unique[s_index] or cid not in visited:
 
-            inverse_mapping[i] = n
+            inverse_mapping[i] = num_duplicates
 
             # keep track of the duplicate
-            visited[cid] = n
-            n += 1
+            visited[cid] = num_duplicates
+            num_duplicates += 1
 
         # the points is not unique and the first of the
         # duplicates is already registered

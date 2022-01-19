@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+# pylint: disable=import-outside-toplevel, too-few-public-methods
 import logging
 
 import numpy as np
@@ -49,7 +50,7 @@ class HDF5:
         connectivity = np.asarray(connectivity)
         point_data = np.column_stack((points, diameters))
 
-        with h5py.File(filepath, "w") as fd:
-            fd.create_dataset("points", data=point_data)
-            fd.create_dataset("structure", data=structure)
-            fd.create_dataset("connectivity", data=connectivity)
+        with h5py.File(filepath, "w") as file_object:
+            file_object.create_dataset("points", data=point_data)
+            file_object.create_dataset("structure", data=structure)
+            file_object.create_dataset("connectivity", data=connectivity)

@@ -56,6 +56,7 @@ class SectionVasculature:
         Returns:
             Point graph
         """
+        # pylint: disable=import-outside-toplevel
         from vascpy.conversion import convert_section_to_point_vasculature
 
         return convert_section_to_point_vasculature(self)

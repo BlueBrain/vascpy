@@ -16,6 +16,7 @@ limitations under the License.
 import logging
 import tempfile
 from collections import deque
+from dataclasses import dataclass
 
 import h5py
 import numpy as np
@@ -24,6 +25,7 @@ import pandas as pd
 from vascpy import specs
 from vascpy.point_vasculature import PointVasculature
 from vascpy.section_vasculature import SectionVasculature
+from vascpy.utils.geometry import unique_points
 
 # from vascpy.section_graph.io import save_section_graph_data
 from vascpy.utils.section_creation import create_chains, reconstruct_chains_using_groups
@@ -115,9 +117,7 @@ def convert_point_to_section_vasculature(point_vasculature):  # pylint: disable=
 
     else:
 
-        L.info(
-            "Section ids for edges were not provided, therefore a specific ordering is not guaranteed."
-        )
+        L.info("Section ids for edges were not provided. A specific ordering is not guaranteed.")
         chains, chain_connectivity, edge_ids_per_chain = create_chains(
             edges, len(points), return_index=True
         )
@@ -198,8 +198,7 @@ def _sections_to_point_connectivity(sections):
         remapped_edges:
             The initial edges remapped to reflect the collapsed duplicate points
     """
-    from vascpy.utils.geometry import unique_points
-
+    # pylint: disable=too-many-locals
     points, diameters, edge_properties = [], [], []
     edge_offsets = np.zeros(len(sections) + 1, dtype=np.int64)
 

@@ -17,6 +17,8 @@ import logging
 
 import click
 
+from vascpy import PointVasculature, SectionVasculature
+
 L = logging.getLogger("vascpy")
 
 
@@ -47,8 +49,6 @@ def app(verbose=0):
 @click.argument("output-file", type=str)
 def morphology_to_sonata(input_file, output_file):
     """Converts a section graph morphology to a sonata node population"""
-    from vascpy import SectionVasculature
-
     SectionVasculature.load(input_file).as_point_graph().save_sonata(output_file)
 
 
@@ -57,6 +57,4 @@ def morphology_to_sonata(input_file, output_file):
 @click.argument("output-file", type=str)
 def sonata_to_morphology(input_file, output_file):
     """Convert sonata file to morphology geometry file"""
-    from vascpy import PointVasculature
-
     PointVasculature.load_sonata(input_file).as_section_graph().save(output_file)

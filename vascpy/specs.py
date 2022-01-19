@@ -13,59 +13,72 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-from collections import namedtuple
+import typing
 
 import numpy as np
+
+
+class _SpecType(typing.NamedTuple):
+    """Specification type dataclass"""
+
+    name: str
+    dtype: type
 
 
 class SpecPointVasculature:
     """PointVasculature specification"""
 
-    _Tp = namedtuple("Type", ["name", "dtype"])
+    # pylint: disable=invalid-name, bad-option-value, too-many-instance-attributes
 
-    X = _Tp("x", np.float32)
-    Y = _Tp("y", np.float32)
-    Z = _Tp("z", np.float32)
-    D = _Tp("diameter", np.float32)
+    X: _SpecType = _SpecType("x", np.float32)
+    Y: _SpecType = _SpecType("y", np.float32)
+    Z: _SpecType = _SpecType("z", np.float32)
+    D: _SpecType = _SpecType("diameter", np.float32)
 
-    NODE_PROPERTIES = [X, Y, Z, D]
+    NODE_PROPERTIES: typing.Tuple[_SpecType, ...] = (X, Y, Z, D)
 
-    SOURCE = _Tp("start_node", np.int64)
-    TARGET = _Tp("end_node", np.int64)
-    TYPE = _Tp("type", np.int32)
-    SECTION_ID = _Tp("section_id", np.int32)
-    SEGMENT_ID = _Tp("segment_id", np.int32)
+    SOURCE: _SpecType = _SpecType("start_node", np.int64)
+    TARGET: _SpecType = _SpecType("end_node", np.int64)
+    TYPE: _SpecType = _SpecType("type", np.int32)
+    SECTION_ID: _SpecType = _SpecType("section_id", np.int32)
+    SEGMENT_ID: _SpecType = _SpecType("segment_id", np.int32)
 
-    EDGE_PROPERTIES = (SOURCE, TARGET, TYPE, SECTION_ID, SEGMENT_ID)
+    EDGE_PROPERTIES: typing.Tuple[_SpecType, ...] = (SOURCE, TARGET, TYPE, SECTION_ID, SEGMENT_ID)
 
 
 class SpecSectionVasculature:
     """SectionVasculature specification"""
 
-    POINTS = np.float32
-    STRUCTURE = np.int64
-    CONNECTIVITY = np.int64
+    # pylint: disable=invalid-name
+
+    POINTS: type = np.float32
+    STRUCTURE: type = np.int64
+    CONNECTIVITY: type = np.int64
 
 
 class SpecSectionHDF5:
     """SectionVasculature file format specification"""
 
-    POINTS = np.float32
-    STRUCTURE = np.int64
-    CONNECTIVITY = np.int64
+    # pylint: disable=invalid-name
+
+    POINTS: type = np.float32
+    STRUCTURE: type = np.int64
+    CONNECTIVITY: type = np.int64
 
 
 class SpecSONATA:
     """SONATA file format specification"""
 
-    SONATA_POINT_DTYPES = {
+    # pylint: disable=invalid-name
+
+    SONATA_POINT_DTYPES: typing.Dict[str, type] = {
         "x": np.float32,
         "y": np.float32,
         "z": np.float32,
         "diameter": np.float32,
     }
 
-    SONATA_EDGE_DTYPES = {
+    SONATA_EDGE_DTYPES: typing.Dict[str, type] = {
         "type": np.int32,
         "start_node": np.uint64,
         "end_node": np.uint64,
