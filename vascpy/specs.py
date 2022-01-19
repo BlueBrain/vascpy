@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+# pylint: disable=too-few-public-methods
 import typing
 
 import numpy as np
@@ -28,7 +29,7 @@ class _SpecType(typing.NamedTuple):
 class SpecPointVasculature:
     """PointVasculature specification"""
 
-    # pylint: disable=invalid-name, bad-option-value, too-many-instance-attributes
+    # pylint: disable=invalid-name, too-many-instance-attributes
 
     X: _SpecType = _SpecType("x", np.float32)
     Y: _SpecType = _SpecType("y", np.float32)

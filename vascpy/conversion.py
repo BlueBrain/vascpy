@@ -16,7 +16,6 @@ limitations under the License.
 import logging
 import tempfile
 from collections import deque
-from dataclasses import dataclass
 
 import h5py
 import numpy as np
@@ -36,6 +35,8 @@ L = logging.getLogger(__name__)
 class ColsPoints:
     """Enumeration for point array columns"""
 
+    # pylint: disable=too-few-public-methods
+
     X = 0
     Y = 1
     Z = 2
@@ -43,6 +44,8 @@ class ColsPoints:
 
 class ColsEdges:
     """Enumeration for edge property columns"""
+
+    # pylint: disable=too-few-public-methods
 
     BEG_NODE = 0
     END_NODE = 1
