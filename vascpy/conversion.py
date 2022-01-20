@@ -24,6 +24,7 @@ import pandas as pd
 from vascpy import specs
 from vascpy.point_vasculature import PointVasculature
 from vascpy.section_vasculature import SectionVasculature
+from vascpy.utils.geometry import unique_points
 
 # from vascpy.section_graph.io import save_section_graph_data
 from vascpy.utils.section_creation import create_chains, reconstruct_chains_using_groups
@@ -34,6 +35,8 @@ L = logging.getLogger(__name__)
 class ColsPoints:
     """Enumeration for point array columns"""
 
+    # pylint: disable=too-few-public-methods
+
     X = 0
     Y = 1
     Z = 2
@@ -41,6 +44,8 @@ class ColsPoints:
 
 class ColsEdges:
     """Enumeration for edge property columns"""
+
+    # pylint: disable=too-few-public-methods
 
     BEG_NODE = 0
     END_NODE = 1
@@ -115,9 +120,7 @@ def convert_point_to_section_vasculature(point_vasculature):  # pylint: disable=
 
     else:
 
-        L.info(
-            "Section ids for edges were not provided, therefore a specific ordering is not guaranteed."
-        )
+        L.info("Section ids for edges were not provided. A specific ordering is not guaranteed.")
         chains, chain_connectivity, edge_ids_per_chain = create_chains(
             edges, len(points), return_index=True
         )
@@ -198,8 +201,7 @@ def _sections_to_point_connectivity(sections):
         remapped_edges:
             The initial edges remapped to reflect the collapsed duplicate points
     """
-    from vascpy.utils.geometry import unique_points
-
+    # pylint: disable=too-many-locals
     points, diameters, edge_properties = [], [], []
     edge_offsets = np.zeros(len(sections) + 1, dtype=np.int64)
 

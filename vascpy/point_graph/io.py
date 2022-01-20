@@ -13,7 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+# pylint: disable=invalid-name, import-outside-toplevel, too-many-locals
 import logging
+import typing
 from collections import OrderedDict
 from typing import Tuple
 
@@ -67,7 +69,7 @@ class SONATA:
         # ensure consecutive ids
         assert np.all(uids == np.arange(uids.size, dtype=uids.dtype))
 
-        node_properties_dict = {
+        node_properties_dict: typing.Dict[str, np.ndarray] = {
             name: np.empty(uids.size, dtype=dtype)
             for name, dtype in SPEC.SONATA_POINT_DTYPES.items()
         }

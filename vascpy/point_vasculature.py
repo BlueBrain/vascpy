@@ -23,6 +23,7 @@ import pandas as pd
 
 from vascpy.exceptions import VasculatureAPIError
 from vascpy.point_graph import features, io
+from vascpy.utils.adjacency import AdjacencyMatrix
 
 L = logging.getLogger(__name__)
 
@@ -129,7 +130,6 @@ class PointGraph:
     @property
     def adjacency_matrix(self):
         """Returns sparse adjacency matrix of the nodes"""
-        from vascpy.utils.adjacency import AdjacencyMatrix
 
         return AdjacencyMatrix(self.edges, n_vertices=self.n_nodes)
 
@@ -217,10 +217,9 @@ class PointVasculature(PointGraph):
         filepath = str(filepath)
         if filepath.endswith(".h5"):
             return cls.load_hdf5(filepath)
-        elif filepath.endswith(".vtk"):
+        if filepath.endswith(".vtk"):
             return cls.load_vtk(filepath)
-        else:
-            raise VasculatureAPIError(f"{filepath} extension is unknown.")
+        raise VasculatureAPIError(f"{filepath} extension is unknown.")
 
     def save(self, filepath: str):
         """Writes the morphology to file. The extension of the file, either vtk or h5 will
@@ -292,6 +291,7 @@ class PointVasculature(PointGraph):
 
     def as_section_graph(self):
         """Converts the point graph to a section graph"""
+        # pylint: disable=import-outside-toplevel
         from vascpy.conversion import convert_point_to_section_vasculature
 
         return convert_point_to_section_vasculature(self)

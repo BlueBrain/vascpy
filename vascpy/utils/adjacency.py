@@ -59,15 +59,17 @@ class GraphMatrix:
         self._indices = s_matrix.indices
 
         # transposed csr matrix for accessing its columns
-        s_matrix_T = s_matrix.T.tocsr()
-        self._indptr_T = s_matrix_T.indptr
-        self._indices_T = s_matrix_T.indices
+        s_matrix_transpose = s_matrix.T.tocsr()
+        self._indptr_transpose = s_matrix_transpose.indptr
+        self._indices_transpose = s_matrix_transpose.indices
 
     def _row_indices(self, row_index):
         return self._indices[self._indptr[row_index] : self._indptr[row_index + 1]]
 
     def _col_indices(self, col_index):
-        return self._indices_T[self._indptr_T[col_index] : self._indptr_T[col_index + 1]]
+        return self._indices_transpose[
+            self._indptr_transpose[col_index] : self._indptr_transpose[col_index + 1]
+        ]
 
     @property
     def n_edges(self):
@@ -136,7 +138,7 @@ class AdjacencyMatrix(GraphMatrix):
         Summing the adjacency matrix over the rows returns the number of edges that come in each
         vertex.
         """
-        return np.diff(self._indptr_T)
+        return np.diff(self._indptr_transpose)
 
     @property
     def degrees(self):

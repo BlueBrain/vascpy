@@ -88,6 +88,7 @@ def _is_flow_through(indeg, outdeg):
 
 def _component_start_nodes(adjacency, deg):
     """Find first nodes of components"""
+    # pylint: disable=too-many-locals
 
     vertices, offsets = adjacency.connected_components()
     comp_start_nodes = []
@@ -184,15 +185,15 @@ def _exhaust_chain(adjacency, initial_node, neighbor, visited, is_chain):
     if not is_chain[neighbor]:
         return neighbor, current_section
 
-    q = deque([neighbor])
+    queue = deque([neighbor])
 
     initial_node_occurence = 0
 
     is_first_time = True
 
-    while q:
+    while queue:
 
-        current_node = q.pop()
+        current_node = queue.pop()
 
         for next_node in adjacency.neighbors(current_node):
 
@@ -214,7 +215,7 @@ def _exhaust_chain(adjacency, initial_node, neighbor, visited, is_chain):
                 _add_to_section(current_section, current_node, next_node)
 
                 if is_chain[next_node]:
-                    q.append(next_node)
+                    queue.append(next_node)
                 else:
                     return next_node, current_section
     return None, current_section
@@ -262,14 +263,14 @@ def _chain_structure(adjacency, edges, n_points):
 
 
 def _chain_connectivity(edges, chains):
-    """Returns the connectivity of the chains if treated as clustered entities represented by nodes"""
+    """Returns chain connectivity treated as clustered entities represented by nodes"""
     chain_connectivity = np.empty((len(edges), 2), dtype=np.int64)
 
     starts = defaultdict(list)
     for section_index, chain in enumerate(chains):
         starts[chain[0][0]].append(section_index)
 
-    n = 0
+    i_connection = 0
     for section_index, chain in enumerate(chains):
 
         section_end = chain[-1][1]
@@ -277,16 +278,17 @@ def _chain_connectivity(edges, chains):
         for child_section in starts[section_end]:
             if section_index != child_section:
 
-                chain_connectivity[n, 0] = section_index
-                chain_connectivity[n, 1] = child_section
-                n += 1
+                chain_connectivity[i_connection, 0] = section_index
+                chain_connectivity[i_connection, 1] = child_section
+                i_connection += 1
 
-    return chain_connectivity[:n]
+    return chain_connectivity[:i_connection]
 
 
 def _map_chains_to_original_edges(edges, chains):
-    """Returns the indices of the edges in the chains as they found in edges array. Directionality is not
-    kept into account, i.e. (0, 1) and (1, 0) will map at the same index in edges.
+    """Returns the indices of the edges in the chains as they found in edges array.
+    Directionality is not kept into account, i.e. (0, 1) and (1, 0) will map at the
+    same index in edges.
     """
     # frozen set allows for undirected edges
     edge_map = {frozenset(edge): i for i, edge in enumerate(edges)}
