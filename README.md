@@ -1,7 +1,7 @@
 vascpy
 ======
 
-vascpy is a python library for reading, writing, and manipulating large-scale vasculature graphs. There are two alternative graph representations available: a section-centered and an edge-centered one. It supports the following respective formats:
+`vascpy` is a python library for reading, writing, and manipulating large-scale vasculature graphs. There are two alternative graph representations available: a section-centered and an edge-centered one. It supports the following respective formats:
 
 * H5 Morphology (see [specification](https://github.com/BlueBrain/h5-vasc-graph))
 * SONATA node population of edges (see [specification](https://github.com/AllenInstitute/sonata/blob/master/docs/SONATA_DEVELOPER_GUIDE.md))
