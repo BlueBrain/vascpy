@@ -27,6 +27,11 @@ setup(
     description="Vasculature API",
     author="Blue Brain Project, EPFL",
     license="Apache-2",
+    url="https://github.com/BlueBrain/vascpy",
+    project_urls={
+        "Tracker": "https://github.com/BlueBrain/vascpy/issues",
+        "Source": "https://github.com/BlueBrain/vascpy",
+    },
     install_requires=[
         "numpy>=1.17",
         "scipy>=1.0.0",
@@ -36,7 +41,11 @@ setup(
         "libsonata>=0.1.8",
         "click>=8.0",
     ],
-    extras_require={"convert-vtk": DEPS_VTK, "all": DEPS_VTK + ["python-igraph>=0.8.0"]},
+    extras_require={
+        "convert-vtk": DEPS_VTK,
+        "all": DEPS_VTK + ["python-igraph>=0.8.0"],
+        "docs": ["sphinx", "sphinx-bluebrain-theme"]
+    },
     packages=find_packages(),
     entry_points={"console_scripts": ["vascpy = vascpy.cli:app"]},
     include_package_data=True,
