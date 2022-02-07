@@ -44,7 +44,7 @@ setup(
     extras_require={
         "convert-vtk": DEPS_VTK,
         "all": DEPS_VTK + ["python-igraph>=0.8.0"],
-        "docs": ["sphinx", "sphinx-bluebrain-theme"]
+        "docs": ["sphinx", "sphinx-bluebrain-theme"],
     },
     packages=find_packages(),
     entry_points={"console_scripts": ["vascpy = vascpy.cli:app"]},
