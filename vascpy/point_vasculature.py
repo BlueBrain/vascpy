@@ -21,6 +21,7 @@ from typing import Dict, Optional
 import numpy as np
 import pandas as pd
 
+import vascpy.conversion
 from vascpy.exceptions import VasculatureAPIError
 from vascpy.point_graph import features, io
 from vascpy.utils.adjacency import AdjacencyMatrix
@@ -130,11 +131,12 @@ class PointGraph:
     @property
     def adjacency_matrix(self):
         """Returns sparse adjacency matrix of the nodes"""
-
         return AdjacencyMatrix(self.edges, n_vertices=self.n_nodes)
 
     def remove(
-        self, node_indices: Optional[np.ndarray] = None, edge_indices: Optional[np.ndarray] = None
+        self,
+        node_indices: Optional[np.ndarray] = None,
+        edge_indices: Optional[np.ndarray] = None,
     ):
         """
         Remove node and edge indices from the point graph.
@@ -291,10 +293,7 @@ class PointVasculature(PointGraph):
 
     def as_section_graph(self):
         """Converts the point graph to a section graph"""
-        # pylint: disable=import-outside-toplevel
-        from vascpy.conversion import convert_point_to_section_vasculature
-
-        return convert_point_to_section_vasculature(self)
+        return vascpy.conversion.convert_point_to_section_vasculature(self)
 
 
 def add_section_annotation(point_vasculature, annotation_name, section_ids, segment_ids):
@@ -329,7 +328,10 @@ def add_section_annotation(point_vasculature, annotation_name, section_ids, segm
     old_index = edge_properties.index
 
     edge_properties.index = pd.MultiIndex.from_arrays(
-        (edge_properties["section_id"].to_numpy(), edge_properties["segment_id"].to_numpy())
+        (
+            edge_properties["section_id"].to_numpy(),
+            edge_properties["segment_id"].to_numpy(),
+        )
     )
 
     # initialze with -1 if the column doesn't exist

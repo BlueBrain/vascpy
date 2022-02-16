@@ -21,9 +21,9 @@ import h5py
 import numpy as np
 import pandas as pd
 
+import vascpy.point_vasculature
+import vascpy.section_vasculature
 from vascpy import specs
-from vascpy.point_vasculature import PointVasculature
-from vascpy.section_vasculature import SectionVasculature
 from vascpy.utils.geometry import unique_points
 
 # from vascpy.section_graph.io import save_section_graph_data
@@ -83,7 +83,7 @@ def convert_section_to_point_vasculature(section_vasculature):
         columns=[t.name for t in SPEC.EDGE_PROPERTIES],
     )
 
-    return PointVasculature(node_properties, edge_properties)
+    return vascpy.point_vasculature.PointVasculature(node_properties, edge_properties)
 
 
 def convert_point_to_section_vasculature(point_vasculature):  # pylint: disable=R0914,R0915
@@ -169,7 +169,7 @@ def convert_point_to_section_vasculature(point_vasculature):  # pylint: disable=
             h5f.create_dataset("structure", data=structure, dtype=SPEC.STRUCTURE)
             h5f.create_dataset("connectivity", data=chain_connectivity, dtype=SPEC.CONNECTIVITY)
 
-        section_vasculature = SectionVasculature.load(filename)
+        section_vasculature = vascpy.section_vasculature.SectionVasculature.load(filename)
 
     return section_vasculature
 

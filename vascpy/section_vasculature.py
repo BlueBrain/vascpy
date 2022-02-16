@@ -13,16 +13,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-from morphio.vasculature import Vasculature
+import morphio.vasculature
 
-from vascpy.section_graph import io
+import vascpy.conversion
+import vascpy.section_graph.io
 
 
 class SectionVasculature:
     """Section representation of graphs"""
 
     def __init__(self, filepath):
-        self._graph = Vasculature(filepath)
+        self._graph = morphio.vasculature.Vasculature(filepath)
 
     @classmethod
     def load(cls, filepath):
@@ -56,11 +57,8 @@ class SectionVasculature:
         Returns:
             Point graph
         """
-        # pylint: disable=import-outside-toplevel
-        from vascpy.conversion import convert_section_to_point_vasculature
-
-        return convert_section_to_point_vasculature(self)
+        return vascpy.conversion.convert_section_to_point_vasculature(self)
 
     def save(self, filepath):
         """Write morphology to file"""
-        io.HDF5.write(filepath, self.points, self.diameters, self.sections)
+        vascpy.section_graph.io.HDF5.write(filepath, self.points, self.diameters, self.sections)
