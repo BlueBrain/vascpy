@@ -1,3 +1,5 @@
+![vascpy Logo](doc/logo/BBP-vascpy.jpg)
+
 vascpy
 ======
 
