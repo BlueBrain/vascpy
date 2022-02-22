@@ -21,7 +21,10 @@ DEPS_VTK = ["vtk>=8.1.2"]
 
 setup(
     classifiers=[
+        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     name="vascpy",
     description="Vasculature API",
@@ -49,6 +52,5 @@ setup(
     packages=find_packages(),
     entry_points={"console_scripts": ["vascpy = vascpy.cli:app"]},
     include_package_data=True,
-    use_scm_version=True,
     python_requires=">=3.7",
 )
