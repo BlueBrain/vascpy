@@ -13,7 +13,7 @@ The `vascpy` library provides two classes: `PointVasculature` and `SectionVascul
 Documentation
 -------------
 vascpy documentation is built and hosted on [readthedocs](https://readthedocs.org/).
-* [latest snapshot](http://neurom.readthedocs.org/en/latest/)
+* [latest snapshot](http://vascpy.readthedocs.org/en/latest/)
 
 Usage
 -----
