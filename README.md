@@ -10,12 +10,10 @@ vascpy
 
 The `vascpy` library provides two classes: `PointVasculature` and `SectionVasculature` that allow for reading and writing edge-centered and section-centered datasets respectively, as well as converting between them.
 
-Installation
-------------
-`vascpy` can be installed via `pip`:
-```
-pip install vascpy
-```
+Documentation
+-------------
+vascpy documentation is built and hosted on [readthedocs](https://readthedocs.org/).
+* [latest snapshot](http://neurom.readthedocs.org/en/latest/)
 
 Usage
 -----
