@@ -30,7 +30,7 @@ def segment_volumes(vasc):
     return (
         (1.0 / 3.0)
         * np.pi
-        * (radii_starts ** 2 + radii_starts * radii_ends + radii_ends ** 2)
+        * (radii_starts**2 + radii_starts * radii_ends + radii_ends**2)
         * seg_lengths
     )
 
@@ -41,7 +41,7 @@ def segment_slant_heights(vasc):
 
     seg_lengths = segment_lengths(vasc)
 
-    return np.sqrt(seg_lengths ** 2 + (radii_ends - radii_starts) ** 2)
+    return np.sqrt(seg_lengths**2 + (radii_ends - radii_starts) ** 2)
 
 
 def segment_lateral_areas(vasc):
