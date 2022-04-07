@@ -38,7 +38,7 @@ setup(
     install_requires=[
         "numpy>=1.17",
         "scipy>=1.0.0",
-        "h5py>=3.5.0",
+        "h5py>=3.4.0",
         "pandas>=1.0.0",
         "morphio>=3.0.0",
         "libsonata>=0.1.8",
