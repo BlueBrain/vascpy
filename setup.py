@@ -36,7 +36,7 @@ setup(
         "Source": "https://github.com/BlueBrain/vascpy",
     },
     use_scm_version={"local_scheme": "no-local-version"},
-    setup_requires=['setuptools_scm'],
+    setup_requires=["setuptools_scm"],
     install_requires=[
         "numpy>=1.17",
         "scipy>=1.0.0",
