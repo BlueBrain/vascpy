@@ -83,7 +83,7 @@ node_properties = DataFrame({
 edge_properties = pd.DataFrame({
     'start_node': np.array([0, 0, 1]),
     'end_node': np.array([1, 2, 2]),
-    'type': np.array([0, 1, 1])
+    'type': np.array([1, 1, 1])
 })
 
 v = PointVasculature(node_properties=node_properties, edge_properties=edge_properties)
