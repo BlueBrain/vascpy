@@ -44,7 +44,7 @@ setup(
         "pandas>=1.0.0",
         "morphio>=3.0.0",
         "libsonata>=0.1.8",
-        "click>=8.0",
+        "click>=8.0",  # 8.0 required for isolated_filesystem
     ],
     extras_require={
         "convert-vtk": DEPS_VTK,
