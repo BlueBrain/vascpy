@@ -84,7 +84,7 @@ class SONATA:
         )
 
     @staticmethod
-    def write(filepath: str, node_properties: pd.DataFrame, edge_properties: pd.DataFrame):
+    def write(filepath: str, population_name:str, node_properties: pd.DataFrame, edge_properties: pd.DataFrame):
         """Write an hdf5 file using the SONATA specification"""
         import h5py
 
@@ -106,7 +106,7 @@ class SONATA:
 
         with h5py.File(filepath, "w") as h5f:
 
-            population = h5f.create_group("/nodes/vasculature", track_order=True)
+            population = h5f.create_group(f"/nodes/{population_name}", track_order=True)
             population.create_dataset("node_type_id", data=np.full(n_edges, -1), dtype=np.int64)
 
             group = population.create_group("0")

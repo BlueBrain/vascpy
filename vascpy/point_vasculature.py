@@ -247,9 +247,9 @@ class PointVasculature(PointGraph):
         """Load a SONATA file"""
         return cls(*io.SONATA.read(filepath))
 
-    def save_sonata(self, filepath):
+    def save_sonata(self, filepath, population_name="vasculature"):
         """Save data using the SONATA specification"""
-        io.SONATA.write(filepath, self.node_properties, self.edge_properties)
+        io.SONATA.write(filepath, population_name, self.node_properties, self.edge_properties)
 
     @property
     def diameters(self):
