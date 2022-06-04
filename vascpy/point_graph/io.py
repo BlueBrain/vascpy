@@ -84,7 +84,12 @@ class SONATA:
         )
 
     @staticmethod
-    def write(filepath: str, population_name:str, node_properties: pd.DataFrame, edge_properties: pd.DataFrame):
+    def write(
+        filepath: str,
+        population_name: str,
+        node_properties: pd.DataFrame,
+        edge_properties: pd.DataFrame,
+    ):
         """Write an hdf5 file using the SONATA specification"""
         import h5py
 

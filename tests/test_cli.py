@@ -27,12 +27,16 @@ def test_convert__morphology_to_sonata_population_name():
 
         with runner.isolated_filesystem(temp_dir=temp_dir):
 
-            result = runner.invoke(app, [
-                "morphology-to-sonata",
-                "--population-name", "mypopulation",
-                morphology_file,
-                out_sonata_file
-            ])
+            result = runner.invoke(
+                app,
+                [
+                    "morphology-to-sonata",
+                    "--population-name",
+                    "mypopulation",
+                    morphology_file,
+                    out_sonata_file,
+                ],
+            )
 
             assert result.exit_code == 0, result
             assert Path(out_sonata_file).exists()

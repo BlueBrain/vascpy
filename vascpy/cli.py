@@ -47,7 +47,13 @@ def app(verbose=0):
 @app.command()
 @click.argument("input-file", type=FILE_TYPE)
 @click.argument("output-file", type=str)
-@click.option("--population-name", type=str, required=False, default="vasculature", help="The name of the node population.")
+@click.option(
+    "--population-name",
+    type=str,
+    required=False,
+    default="vasculature",
+    help="The name of the node population.",
+)
 def morphology_to_sonata(input_file, output_file, population_name):
     """Converts a section graph morphology to a sonata node population"""
     SectionVasculature.load(input_file).as_point_graph().save_sonata(output_file, population_name)
