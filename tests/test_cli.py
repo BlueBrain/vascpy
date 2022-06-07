@@ -2,6 +2,7 @@ import tempfile
 from pathlib import Path
 
 import click
+import libsonata
 import numpy as np
 import pytest
 from click.testing import CliRunner
@@ -13,21 +14,36 @@ from vascpy.cli import app
 
 DATA = Path(__file__).parent / "data"
 
-"""
-def test_version():
 
-    from vascpy.version import VERSION
+def test_convert__morphology_to_sonata_population_name():
+
+    morphology_file = str(DATA / "h5/fork_diameters_section_spec.h5")
 
     runner = CliRunner()
 
-    result = runner.invoke(app, "--version")
+    with tempfile.TemporaryDirectory() as temp_dir:
 
-    assert result.exit_code == 0
-    assert result.output == f"vascpy, version {VERSION}\n"
-"""
+        out_sonata_file = str(Path(temp_dir) / "sonata.h5")
+
+        with runner.isolated_filesystem(temp_dir=temp_dir):
+
+            result = runner.invoke(
+                app,
+                [
+                    "morphology-to-sonata",
+                    "--population-name",
+                    "mypopulation",
+                    morphology_file,
+                    out_sonata_file,
+                ],
+            )
+
+            assert result.exit_code == 0, result
+            assert Path(out_sonata_file).exists()
+            assert libsonata.NodeStorage(out_sonata_file).population_names == {"mypopulation"}
 
 
-def test_convert__sonata_morphology():
+def test_convert__sonata_morphology_cycle():
 
     morphology_file = str(DATA / "h5/fork_diameters_section_spec.h5")
     sonata_file = str(DATA / "h5/fork_diameters_sonata_spec.h5")
