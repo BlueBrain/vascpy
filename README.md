@@ -23,14 +23,14 @@ Load and write an h5 morphology file:
 ```python
 from vascpy import SectionVasculature
 
-v = SectionVasculature.load_hdf5("sample.h5")
+v = SectionVasculature.load("sample.h5")
 
 print(v.points)
 print(v.diameters)
 print(v.connectivity)
 print(v.sections)
 
-v.save_hdf5("sample2.h5")
+v.save("sample2.h5")
 ```
 
 Load and write an h5 SONATA file:
