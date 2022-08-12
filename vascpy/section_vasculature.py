@@ -26,9 +26,14 @@ class SectionVasculature:
         self._graph = morphio.vasculature.Vasculature(filepath)
 
     @classmethod
+    def load_hdf5(cls, filepath):
+        """Load morphology from hdf5 file"""
+        return cls(filepath)
+
+    @classmethod
     def load(cls, filepath):
         """Load morphology from file"""
-        return cls(filepath)
+        return SectionVasculature.load_hdf5(filepath)
 
     @property
     def points(self):
@@ -59,6 +64,10 @@ class SectionVasculature:
         """
         return vascpy.conversion.convert_section_to_point_vasculature(self)
 
-    def save(self, filepath):
+    def save_hdf5(self, filepath):
         """Write morphology to file"""
         vascpy.section_graph.io.HDF5.write(filepath, self.points, self.diameters, self.sections)
+
+    def save(self, filepath):
+        """Write morphology to file"""
+        self.save_hdf5(filepath)
