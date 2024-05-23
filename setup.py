@@ -49,7 +49,7 @@ setup(
     ],
     extras_require={
         "convert-vtk": DEPS_VTK,
-        "all": DEPS_VTK + ["python-igraph>=0.8.0"],
+        "all": DEPS_VTK + ["igraph>=0.8.0"],
         "docs": ["sphinx", "sphinx-bluebrain-theme"],
     },
     packages=find_packages(),
